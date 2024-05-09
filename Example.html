@@ -1,0 +1,99 @@
+
+<style>
+
+.tabs {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.tab-links {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.tab-links li {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.tab-links li a {
+    text-decoration: none;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+    color: #333;
+}
+
+.tab-links li.active a {
+    background-color: #ccc;
+}
+
+.tab-content {
+    display: none;
+    padding: 20px;
+    border: 1px solid #ccc;
+}
+
+.tab-content.active {
+    display: block;
+}
+.tab-content {
+    display: none;
+    padding: 20px;
+    border: 1px solid #ccc;
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
+.tab-content.active {
+    display: block;
+    opacity: 1;
+}
+
+
+</style>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+    // Obtener todos los elementos de pestañas
+    var tabLinks = document.querySelectorAll(".tab-links li a");
+
+    // Agregar un manejador de eventos clic a cada enlace de pestaña
+    tabLinks.forEach(function(tabLink) {
+        tabLink.addEventListener("click", function(e) {
+            e.preventDefault(); // Evitar el comportamiento predeterminado del enlace
+
+            // Obtener el ID de la pestaña a la que se hace clic
+            var tabId = this.getAttribute("href");
+
+            // Ocultar todas las pestañas y enlaces de pestañas activas
+            document.querySelectorAll(".tab-content, .tab-links li").forEach(function(tab) {
+                tab.classList.remove("active");
+            });
+
+            // Mostrar la pestaña y el enlace de pestaña activos
+            document.querySelector(tabId).classList.add("active");
+            this.parentNode.classList.add("active");
+        });
+    });
+});
+
+</script>
+<div class="tabs">
+    <ul class="tab-links">
+        <li class="active"><a href="#tab1">Tab 1</a></li>
+        <li><a href="#tab2">Tab 2</a></li>
+        <li><a href="#tab3">Tab 3</a></li>
+    </ul>
+    <div class="tab-content" id="tab1">
+        Contenido de la pestaña 1
+    </div>
+    <div class="tab-content" id="tab2">
+        Contenido de la pestaña 2
+    </div>
+    <div class="tab-content" id="tab3">
+        Contenido de la pestaña 3
+    </div>
+</div>
+
+
